@@ -46,8 +46,13 @@
       };
 
       const Form = () => {
+        const handleFormSubmit = (event) => {
+          event.preventDefault();
+          console.log('폼 전송됨');
+        };
+
         return (
-          <form>
+          <form onSubmit={handleFormSubmit}>
             <input
               type="text"
               name="name"
@@ -59,10 +64,22 @@
       };
 
       const MainCard = (props) => {
+        const handleHeartClick = () => {
+          console.log('하트 눌렀음');
+        };
+        const handleHeartMouseOver = () => {
+          console.log('하트 스쳐지나감');
+        };
+
         return (
           <div className="main-card">
             <img src={props.img} alt="고양이" width="400" />
-            <button>🤍</button>
+            <button
+              onClick={handleHeartClick}
+              onMouseOver={handleHeartMouseOver}
+            >
+              🤍
+            </button>
           </div>
         );
       };
