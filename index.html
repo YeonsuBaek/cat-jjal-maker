@@ -116,13 +116,17 @@
         const CAT2 = 'https://cataas.com/cat/BxqL2EjFmtxDkAm2/says/inflearn';
         const CAT3 = 'https://cataas.com/cat/18MD6byVC1yKGpXp/says/JavaScript';
 
-        const [counter, setCounter] = React.useState(1);
+        const [counter, setCounter] = React.useState(
+          Number(localStorage.getItem('counter'))
+        );
         const [mainImage, setMainImage] = React.useState(CAT1);
-        const [favorties, setFavorites] = React.useState([CAT1, CAT2]);
+        const [favorties, seFavorites] = React.useState([CAT1, CAT2]);
 
         const updateMainImage = () => {
           setMainImage(CAT2);
-          setCounter(counter + 1);
+          const nextCounter = counter + 1;
+          setCounter(nextCounter);
+          localStorage.setItem('counter', nextCounter);
         };
 
         const handleHeartClick = () => {
