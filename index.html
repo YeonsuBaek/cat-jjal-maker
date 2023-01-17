@@ -46,12 +46,20 @@
       };
 
       const Form = (props) => {
+        const [value, setValue] = React.useState('');
+
+        const handleInputChange = (event) => {
+          setValue(event.target.value.toUpperCase());
+        };
+
         return (
           <form onSubmit={props.handleFormSubmit}>
             <input
               type="text"
               name="name"
               placeholder="영어 대사를 입력해주세요"
+              value={value}
+              onChange={handleInputChange}
             />
             <button type="submit">생성</button>
           </form>
