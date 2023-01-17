@@ -114,7 +114,7 @@
         return (
           <ul className="favorites">
             {props.favorties.map((cat) => {
-              return <CatItem img={cat} key={cat} />;
+              return <CatItem img={cat} key={Math.random()} />;
             })}
           </ul>
         );
