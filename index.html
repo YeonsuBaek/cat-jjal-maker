@@ -45,14 +45,9 @@
         return <h1>{props.children}</h1>;
       };
 
-      const Form = () => {
-        const handleFormSubmit = (event) => {
-          event.preventDefault();
-          console.log('폼 전송됨');
-        };
-
+      const Form = (props) => {
         return (
-          <form onSubmit={handleFormSubmit}>
+          <form onSubmit={props.handleFormSubmit}>
             <input
               type="text"
               name="name"
@@ -101,18 +96,27 @@
         );
       };
 
-      const app = (
-        <div>
-          <Title>1번째 고양이 가라사대</Title>
-          <Form />
-          <MainCard img="https://cataas.com/cat/HSENVDU4ZMqy7KQ0/says/react" />
-          <Favorites />
-        </div>
-      );
+      const App = () => {
+        const [counter, setCounter] = React.useState(1);
+
+        const handleFormSubmit = (event) => {
+          event.preventDefault();
+          setCounter(counter + 1);
+        };
+
+        return (
+          <div>
+            <Title>{counter}번째 고양이 가라사대</Title>
+            <Form handleFormSubmit={handleFormSubmit} />
+            <MainCard img="https://cataas.com/cat/HSENVDU4ZMqy7KQ0/says/react" />
+            <Favorites />
+          </div>
+        );
+      };
 
       const 여기다가그려 = document.querySelector('#app');
 
-      ReactDOM.render(app, 여기다가그려);
+      ReactDOM.render(<App />, 여기다가그려);
     </script>
   </body>
 </html>
