@@ -103,10 +103,12 @@
       };
 
       const MainCard = (props) => {
+        const heartIcon = props.alreadyFavorite ? '💖' : '🤍';
+
         return (
           <div className="main-card">
             <img src={props.img} alt="고양이" width="400" />
-            <button onClick={props.onHeartClick}>🤍</button>
+            <button onClick={props.onHeartClick}>{heartIcon}</button>
           </div>
         );
       };
@@ -120,6 +122,10 @@
       };
 
       const Favorites = (props) => {
+        if (props.favorties.length === 0) {
+          return <div>사진 위에 하트를 눌러 고양이 사진을 저장해봐요!</div>;
+        }
+
         return (
           <ul className="favorites">
             {props.favorties.map((cat) => {
@@ -141,6 +147,8 @@
         const [favorties, setFavorites] = React.useState(
           jsonLocalStorage.getItem('favorites') || []
         );
+
+        const alreadyFavorite = favorties.includes(mainImage);
 
         const setInitialImage = async () => {
           const newImage = await fetchCat('First Cat');
@@ -170,7 +178,11 @@
           <div>
             <Title>{counter}번째 고양이 가라사대</Title>
             <Form updateMainImage={updateMainImage} />
-            <MainCard img={mainImage} onHeartClick={handleHeartClick} />
+            <MainCard
+              img={mainImage}
+              onHeartClick={handleHeartClick}
+              alreadyFavorite={alreadyFavorite}
+            />
             <Favorites favorties={favorties} />
           </div>
         );
