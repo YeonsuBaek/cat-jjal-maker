@@ -142,6 +142,15 @@
           jsonLocalStorage.getItem('favorites') || []
         );
 
+        const setInitialImage = async () => {
+          const newImage = await fetchCat('First Cat');
+          setMainImage(newImage);
+        };
+
+        React.useEffect(() => {
+          setInitialImage();
+        }, []);
+
         const updateMainImage = async (value) => {
           const newImage = await fetchCat(value);
 
