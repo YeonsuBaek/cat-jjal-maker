@@ -141,7 +141,7 @@
         const CAT3 = 'https://cataas.com/cat/18MD6byVC1yKGpXp/says/JavaScript';
 
         const [counter, setCounter] = React.useState(
-          jsonLocalStorage.getItem('counter') || 1
+          jsonLocalStorage.getItem('counter')
         );
         const [mainImage, setMainImage] = React.useState(CAT1);
         const [favorties, setFavorites] = React.useState(
@@ -174,9 +174,11 @@
           jsonLocalStorage.setItem('favorites', nextFavorties);
         };
 
+        const counterTitle = counter ? `${counter}번째 ` : '';
+
         return (
           <div>
-            <Title>{counter}번째 고양이 가라사대</Title>
+            <Title>{counterTitle}고양이 가라사대</Title>
             <Form updateMainImage={updateMainImage} />
             <MainCard
               img={mainImage}
